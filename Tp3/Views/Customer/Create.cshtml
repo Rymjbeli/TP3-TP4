@@ -1,0 +1,52 @@
+﻿@model Tp3.Models.Customer
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Customer</h1>
+
+@if (ViewBag.Errors != null)
+{
+    <div class="text-red ml">
+        <ul>
+            @foreach (string error in ViewBag.Errors)
+            {
+                <li class="ml">@error</li>
+            }
+        </ul>
+    </div>
+}
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Name</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-red"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MembershiptypeId" class="control-label">Membership Name</label>
+                <select asp-for="MembershiptypeId" class="form-control" asp-items="@ViewBag.member"></select>
+            </div>
+
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
